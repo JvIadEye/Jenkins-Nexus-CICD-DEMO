@@ -1,3 +1,8 @@
+def yumInstallApp(){
+    echo "Yum installing ..."
+    sh "yum install httpd -y"
+}
+
 def buildApp(){
     echo "Building Application ..."
 }
