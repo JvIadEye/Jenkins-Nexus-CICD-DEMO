@@ -11,7 +11,7 @@ def pushImage(){
 
     withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USER')]){
         sh "docker login 10.1.10.74:9006 -u ${USER} -p ${PSW}"
-        sh "docker push 10.1.10.75:9006/dockerhosted-repo:${BUILD_NUMBER}"
+        sh "docker push 10.1.10.74:9006/dockerhosted-repo:${BUILD_NUMBER}"
     }
 }
 
