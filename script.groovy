@@ -1,6 +1,6 @@
-def yumInstallApp(){
-    echo "Yum installing ..."
-    sh "yum install httpd -y"
+def aptInstallApp(){
+    echo "Apt installing ..."
+    sh "apt install httpd -y"
 }
 
 def buildApp(){
