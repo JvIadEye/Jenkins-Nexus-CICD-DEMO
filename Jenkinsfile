@@ -9,6 +9,14 @@ pipeline{
                 }
             }
         }
+
+        stage('Yum Install'){
+            steps{
+                script{
+                    gv_script.yumInstallApp()
+                }
+            }
+        }
         
         stage('Build'){
             steps{
