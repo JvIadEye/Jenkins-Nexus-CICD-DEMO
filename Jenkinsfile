@@ -1,6 +1,15 @@
 def gv_script
 pipeline{
     agent any
+    nexusPolicyEvaluation( 
+        advancedProperties: '', 
+        enableDebugLogging: false, 
+        failBuildOnNetworkError: false, 
+        iqInstanceId: 'Netpo_Demo', 
+        iqOrganization: '', 
+        iqStage: 'build', 
+        jobCredentialsId: ''
+    )
     stages{
         stage('Init'){
             steps{
@@ -23,8 +32,6 @@ pipeline{
                 script{
                     gv_script.buildApp()
                 }
-
-                nexusPolicyEvaluation advancedProperties: '', enableDebugLogging: false, failBuildOnNetworkError: false, iqInstanceId: 'Netpo_Demo', iqOrganization: '', iqStage: 'build', jobCredentialsId: ''
             }
         }
 
