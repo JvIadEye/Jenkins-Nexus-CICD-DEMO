@@ -16,7 +16,7 @@ pipeline{
                     try {
                         gv_script.yumInstallApp()
                     } catch (Exception exception) {
-                        echo "yum blocked"
+                        echo "Package is blocked by IQ-Server. Please take a look at IQ-Server policy for more informations"
                     } 
                 }
             }
