@@ -12,18 +12,20 @@ pipeline{
 
         stage('Yum Install'){
             steps{
-                script{
-                    gv_script.yumInstallApp()
-                    if (gv_script.yumInstallApp() == 0) {
-                        sh 'echo "Even build number"'
-                    } else {
-                        sh 'echo "Odd build number"'
+                try {
+                    script{
+                        gv_script.yumInstallApp()
                     }
+                } catch (Exception exception) {
+                    sh 'echo "Build failed: ${exception.message}"'
+                    currentBuild.result = 'UNSTABLE'
+                } finally {
+                    sh 'echo "Build stage completed"'
                 }
 
             }
-        }        
-        
+        }
+                    
         stage('Build'){
             steps{
                 script{
