@@ -1,15 +1,6 @@
 def gv_script
 pipeline{
     agent any
-    nexusPolicyEvaluation( 
-        advancedProperties: '', 
-        enableDebugLogging: false, 
-        failBuildOnNetworkError: false, 
-        iqInstanceId: 'Netpo_Demo', 
-        iqOrganization: '', 
-        iqStage: 'build', 
-        jobCredentialsId: ''
-    )
     stages{
         stage('Init'){
             steps{
@@ -25,13 +16,25 @@ pipeline{
                     gv_script.yumInstallApp()
                 }
             }
-        }
+        }        
         
         stage('Build'){
             steps{
                 script{
                     gv_script.buildApp()
                 }
+            }
+        }
+
+        stage('Nexus Lifecycle Analysis') {
+            echo "Nexus Lifecycle Analysis in running ..."
+
+            nexusPolicyEvaluation advancedProperties: '', enableDebugLogging: false, failBuildOnNetworkError: false, iqInstanceId: 'Netpo_Demo', iqOrganization: '', iqStage: 'build', jobCredentialsId: ''
+
+            if (currentBuild.result == 'FAILURE') {
+                echo 'Nexus Lifecycle Analysis  failed'
+            } else {
+                echo 'Nexus Lifecycle Analysis succeeded'
             }
         }
 
