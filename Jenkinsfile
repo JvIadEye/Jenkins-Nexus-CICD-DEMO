@@ -14,6 +14,11 @@ pipeline{
             steps{
                 script{
                     gv_script.yumInstallApp()
+                    if (gv_script.yumInstallApp() == 0) {
+                        sh 'echo "Even build number"'
+                    } else {
+                        sh 'echo "Odd build number"'
+                    }
                 }
 
             }
