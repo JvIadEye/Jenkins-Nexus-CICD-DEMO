@@ -1,6 +1,6 @@
 def yumInstallApp(){
     echo "Yum installing ..."
-    sh "sudo yum install httpd -y"
+    sh "sudo yum install nginx -y"
 }
 
 def buildApp(){
