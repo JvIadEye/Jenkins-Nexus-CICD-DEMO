@@ -30,7 +30,7 @@ pipeline{
             steps{
                 echo "Nexus Lifecycle Analysis in running ..."
     
-                nexusPolicyEvaluation advancedProperties: '', enableDebugLogging: false, failBuildOnNetworkError: false, iqApplication: selectedApplication('sandbox-application'), iqInstanceId: 'Netpo_Demo', iqOrganization: '', iqStage: 'Build', jobCredentialsId: ''
+                nexusPolicyEvaluation advancedProperties: '', enableDebugLogging: false, failBuildOnNetworkError: false, iqApplication: selectedApplication('sandbox-application'), iqInstanceId: 'Netpo_Demo', iqOrganization: '', iqStage: 'build', jobCredentialsId: ''
             }
         }
 
