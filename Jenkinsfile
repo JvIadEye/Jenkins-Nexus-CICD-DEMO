@@ -12,17 +12,16 @@ pipeline{
 
         stage('Yum Install'){
             steps{
-                try {
-                    script{
+                script{
+                    try {
                         gv_script.yumInstallApp()
+                    } catch (Exception exception) {
+                        sh 'echo "Build failed: ${exception.message}"'
+                        currentBuild.result = 'UNSTABLE'
+                    } finally {
+                        sh 'echo "Build stage completed"'
                     }
-                } catch (Exception exception) {
-                    sh 'echo "Build failed: ${exception.message}"'
-                    currentBuild.result = 'UNSTABLE'
-                } finally {
-                    sh 'echo "Build stage completed"'
                 }
-
             }
         }
                     
