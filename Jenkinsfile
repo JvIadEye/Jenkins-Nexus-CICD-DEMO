@@ -15,6 +15,12 @@ pipeline{
                 script{
                     gv_script.yumInstallApp()
                 }
+
+                if (gv_script.yumInstallApp()==FAIL) {
+                    echo "Install Fail..."
+                } else {
+                    echo "Install Succeed..."
+                }
             }
         }        
         
